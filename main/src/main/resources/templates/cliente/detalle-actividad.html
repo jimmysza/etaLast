@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle Actividad</title>
+</head>
+<body>
+<h1 th:text="${actividad.titulo}">Título de la Actividad</h1>
+
+<p><strong>Descripción:</strong> <span th:text="${actividad.descripcion}"></span></p>
+<p>Fecha de la actividad: 
+    <span th:text="${#temporals.format(actividad.fechaActividad, 'dd/MM/yyyy HH:mm')}"></span>
+</p>
+<p><strong>Capacidad:</strong> <span th:text="${actividad.capacidad}"></span></p>
+<p>Colaborador: 
+    <span th:text="${actividad.colaborador.usuario.nombre}"></span>
+</p>
+<p>Imagen: <img th:src="@{|/uploads/${actividad.imagen}|}" alt="Imagen de la actividad"/>
+</p>
+
+<p>Email: <span th:text="${actividad.colaborador.usuario.email}"></span></p>
+<p>Teléfono: <span th:text="${actividad.colaborador.usuario.telefono}"></span></p>
+
+
+<p>Precio: <span th:text="${actividad.precio}"></span></p>
+<p><strong>Lugar:</strong> <span th:text="${actividad.ubicacion}"></span></p>
+
+
+<a th:href="@{/}" class="btn btn-secondary">Volver</a>
+</body>
+</html>

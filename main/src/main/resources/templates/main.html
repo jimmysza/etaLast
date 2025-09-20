@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+
+    <link rel="icon" th:href="@{/images/icon_eta.png}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/fonts/fonts.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/fonts/fonts.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/global.css">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+
+    <!-- Usamos @{...} para que Thymeleaf construya bien la URL -->
+    <header class="hero">
+        <div class="container-100">
+            <nav>
+                <div class="flex justify-center items-center w-[40px]">
+                    <img th:src="@{/images/icon_eta.png}" class="logo" alt="logo EPT" />
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#tendencias">Tendencias</a></li>
+                    <li><a href="#comparte">Comparte</a></li>
+                    <li><a href="#turismo">Crea tus actividades</a></li>
+
+                    <li class="sign-contain" th:if="${nombreUsuario == null}">
+                        <a th:href="@{/login?role=cliente}" class="btn-auth">Inicia sesión</a>
+                        <a th:href="@{/registro/cliente}" class="btn-auth register-btn flex items-center gap-3">
+                            Únete gratis
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <g fill="none">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                                    <path fill="#5483b3"
+                                        d="M3.283 10.94a1.5 1.5 0 0 0 0 2.12l5.656 5.658a1.5 1.5 0 1 0 2.122-2.122L7.965 13.5H19.5a1.5 1.5 0 0 0 0-3H7.965l3.096-3.096a1.5 1.5 0 1 0-2.122-2.121z"
+                                        stroke-width="0.2" stroke="#5483b3" />
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li class="perfilCliente dropdown" th:if="${nombreUsuario != null}">
+                        <a href="#" tabindex="0">
+                            <img th:src="@{/images/perfiles/perfil.webp}" alt="Perfil del cliente" />
+                        </a>
+                        <div class="dropdown-contain">
+                            <a th:href="@{/cliente/dashboard}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <g fill="#000" fill-rule="evenodd" clip-rule="evenodd" stroke-width="0.2"
+                                        stroke="#000">
+                                        <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0m-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0" />
+                                        <path
+                                            d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1M3 12c0 2.09.713 4.014 1.908 5.542A8.99 8.99 0 0 1 12.065 14a8.98 8.98 0 0 1 7.092 3.458A9 9 0 1 0 3 12m9 9a8.96 8.96 0 0 1-5.672-2.012A6.99 6.99 0 0 1 12.065 16a6.99 6.99 0 0 1 5.689 2.92A8.96 8.96 0 0 1 12 21" />
+                                    </g>
+                                </svg>
+                                Perfil
+                            </a>
+
+                            <form th:action="@{/logout}" method="post">
+                                <button type="submit" class="btn-cerraSesion">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill="#000"
+                                            d="M6 2h9a2 2 0 0 1 2 2v1a1 1 0 0 1-2 0V4H6v16h9v-1a1 1 0 0 1 2 0v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2"
+                                            stroke-width="0.2" stroke="#000" />
+                                        <path fill="#000"
+                                            d="M16.795 16.295c.39.39 1.02.39 1.41 0l3.588-3.588a1 1 0 0 0 0-1.414l-3.588-3.588a.999.999 0 0 0-1.411 1.411L18.67 11H10a1 1 0 0 0 0 2h8.67l-1.876 1.884a1 1 0 0 0 .001 1.411"
+                                            stroke-width="0.2" stroke="#000" />
+                                    </svg> Cerrar sesión
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="content">
+            <h1>Encuentra Actividades, crea nuevas experiencias</h1>
+            <p>conecta con nuevas experiencias de manera segura</p>
+            <div class="btns-hero">
+                <a th:href="@{/registro/cliente}" class="btn-auth register-btn flex items-center gap-3">Unete gratis
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <g fill="none">
+                            <path
+                                d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                            <path fill="#fff"
+                                d="M3.283 10.94a1.5 1.5 0 0 0 0 2.12l5.656 5.658a1.5 1.5 0 1 0 2.122-2.122L7.965 13.5H19.5a1.5 1.5 0 0 0 0-3H7.965l3.096-3.096a1.5 1.5 0 1 0-2.122-2.121z"
+                                stroke-width="0.2" stroke="#fff" />
+                        </g>
+                    </svg>
+                </a>
+                <a href="" class="btn-auth">Explora Actividades</a>
+            </div>
+        </div>
+
+    </main>
+
+    <section class="Trending" id="tendencias">
+        <div class="top-trending">
+            <h2 class="h2_trendi">Tendencias, <a href="#" class="city">Cartagena de Indias</a></h2>
+        </div>
+
+        <div class="Actividades-Container">
+            <a th:each="actividad : ${actividades.content}"
+                th:href="@{/cliente/detalle/{id}(id=${actividad.idActividad})}" class="Actividad-card-link">
+                <div class="Actividad-card">
+                    <div class="price">$ <span th:text="${#numbers.formatDecimal(actividad.precio, 0, 0)}">10</span>
+                    </div>
+
+                    <img th:if="${actividad.imagen != null}" th:src="@{'/uploads/' + ${actividad.imagen}}"
+                        alt="Imagen de la actividad" />
+
+                    <span th:if="${actividad.imagen == null}" class="fallback-img">Sin imagen</span>
+
+                    <div class="content-actividad">
+                        <h3 th:text="${actividad.titulo}">Apartamento ideal en cartagena</h3>
+                        <p th:text="${actividad.ubicacion}">Cartagena de Indias</p>
+                    </div>
+                </div>
+            </a>
+
+
+            <a class="anterior-paginacion flex items-center gap-2 px-3 py-2 rounded bg-gray-200 hover:bg-gray-300"
+                th:if="${currentPage > 0}" th:href="@{/(page=${currentPage - 1})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24">
+                    <path fill="#3073b7"
+                        d="m7.825 13l4.9 4.9q.3.3.288.7t-.313.7q-.3.275-.7.288t-.7-.288l-6.6-6.6q-.15-.15-.213-.325T4.426 12t.063-.375t.212-.325l6.6-6.6q.275-.275.688-.275t.712.275q.3.3.3.713t-.3.712L7.825 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                </svg>
+
+            </a>
+
+
+
+            <a class="anterior-paginacion despues-paginacion flex items-center gap-2 px-3 py-2 rounded bg-gray-200 hover:bg-gray-300"
+                th:if="${currentPage < totalPages - 1}" th:href="@{/(page=${currentPage + 1})}">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24">
+                    <path fill="#3073b7"
+                        d="m7.825 13l4.9 4.9q.3.3.288.7t-.313.7q-.3.275-.7.288t-.7-.288l-6.6-6.6q-.15-.15-.213-.325T4.426 12t.063-.375t.212-.325l6.6-6.6q.275-.275.688-.275t.712.275q.3.3.3.713t-.3.712L7.825 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                </svg>
+            </a>
+
+
+        </div>
+        <span class="px-4 py-2 text-gray-700">
+            Página <strong th:text="${currentPage + 1}">1</strong> de <strong th:text="${totalPages}">1</strong>
+        </span>
+
+
+
+
+    </section>
+
+    <section class="social" id="comparte">
+        <div class="flex">
+            <div class="w-70 social-container-info">
+                <h2>Comparte, Tu Plan</h2>
+                <p class="h2_description">¡Muéstranos cómo vas de aventura etiquetándonos con #GetOutThere en @AllTrails
+                    para tener la oportunidad de aparecer en la lista!</p>
+            </div>
+            <div class="w-30 flex items-center justify-center gap-10.5">
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" {...props}>
+                        <path fill="currentColor"
+                            d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3" />
+                    </svg>
+                </a>
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" {...props}>
+                        <g fill="none">
+                            <g clip-path="url(#akarIconsFacebookFill0)">
+                                <path fill="currentColor" fill-rule="evenodd"
+                                    d="M0 12.067C0 18.034 4.333 22.994 10 24v-8.667H7V12h3V9.333c0-3 1.933-4.666 4.667-4.666c.866 0 1.8.133 2.666.266V8H15.8c-1.467 0-1.8.733-1.8 1.667V12h3.2l-.533 3.333H14V24c5.667-1.006 10-5.966 10-11.933C24 5.43 18.6 0 12 0S0 5.43 0 12.067"
+                                    clip-rule="evenodd" />
+                            </g>
+                            <defs>
+                                <clipPath id="akarIconsFacebookFill0">
+                                    <path fill="#fff" d="M0 0h24v24H0z" />
+                                </clipPath>
+                            </defs>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="container_share">
+            <a href="">
+                <div class="shares">
+                    <div class="contain-img-shares">
+                        <img th:src="@{/images/shares/share1.webp}" alt="shares">
+                        <p class="text-shares">@lilaras</p>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <div class="shares">
+                    <div class="contain-img-shares">
+                        <img th:src="@{/images/shares/share2.webp}" alt="shares">
+                        <p class="text-shares">@jimmysza</p>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <div class="shares">
+                    <div class="contain-img-shares">
+                        <img th:src="@{/images/shares/share3.webp}" alt="shares">
+                        <p class="text-shares">@lunajr</p>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <div class="shares">
+                    <div class="contain-img-shares">
+                        <img th:src="@{/images/shares/share4.webp}" alt="shares">
+                        <p class="text-shares">@kaicenat</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="info-footer flex flex-col">
+
+            <div class="links-container-footer">
+                <div class="flex justify-start con-logo-footer">
+                    <a href="" class="logo-footer"><span>eta</span>®</a>
+                </div>
+                <div class="links-footer">
+                    <a href="" class="font-bold">Explorar</a>
+                    <a href="Paises">Paises</a>
+                    <a href="">Eventos</a>
+                    <a href="">Lugares</a>
+                    <a href="">Actividades</a>
+                    <a href="">Toures</a>
+                    <a href="">Rutas</a>
+                </div>
+                <div class="links-footer">
+                    <a href="" class="font-bold">Mapas</a>
+                    <a href="">Guardados</a>
+                    <a href="">Crear Rutas</a>
+                    <a href="">Crear Actividad</a>
+                </div>
+                <div class="links-footer">
+                    <a href="" class="font-bold">Colaboradores</a>
+                    <a href="/registro/colaborador">Registrate</a>
+                    <a href="/login?role=colaborador">Inicia Sesion</a>
+                </div>
+                <div class="links-footer">
+                    <a href="" class="font-bold">Admin</a>
+                    <a href="/login?role=admin">Inicia Sesion</a>
+                </div>
+            </div>
+
+            <div class="social_footer mt-7  grid grid-cols-3">
+
+                <div class="download flex flex-col gap-2 items-start justify-start">
+                    <p class="font-bold">Una aplicacion para disfruta al maximo </p>
+                    <div class="flex gap-4 mt-4px">
+                        <a href=""><img th:src="@{/assets/images/appstore.webp}" alt="apple" class="w-[125px]"></a>
+                        <a href="andor"><img th:src="@{/assets/images/googleplay.webp}" alt="android"
+                                class="w-[130px]"></a>
+                    </div>
+                </div>
+
+                <div class="sponsor flex flex-col items-start justify-start gap-1">
+                    <p class="font-bold">Miembros de EPT</p>
+                    <div class="flex gap-3.5 mt-4px">
+                        <a href=""><img class="w-[130px]" th:src="@{/assets/images/fiscalia.webp}" alt="fiscalia" /></a>
+                        <a href=""><img class="w-[130px]" th:src="@{/assets/images/ministerio.webp}"
+                                alt="ministerio" /></a>
+                        <a href="" class="white-bg w-[130px]"><img th:src="@{/assets/images/alcadia.webp}"
+                                alt="alcadia" /></a>
+                    </div>
+                </div>
+
+                <div class="social_medias_links justify-center">
+                    <p class="font-bold">Conectate con nosotros</p>
+                    <div class="icon_social flex gap-5 mt-4px justify-center">
+                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                                {...props}>
+                                <path fill="currentColor"
+                                    d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3">
+                                </path>
+                            </svg></a>
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
+                                {...props}>
+                                <path fill="currentColor"
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
+                                {...props}>
+                                <path fill="currentColor"
+                                    d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
+                                {...props}>
+                                <path fill="currentColor"
+                                    d="M10.488 14.651L15.25 21h7l-7.858-10.478L20.93 3h-2.65l-5.117 5.886L8.75 3h-7l7.51 10.015L2.32 21h2.65zM16.25 19L5.75 5h2l10.5 14z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                <div class="info_copy flex flex-col">
+                    <p>© 2025-2025 EPT, LLC</p>
+                    <p>EPT® y EPT Mountain Design son marcas registradas de EPT, LLC tanto en Estados Unidos como en
+                        otras jurisdicciones.
+                    <p>
+                    <p>FIND YOUR WAY OUTSIDE™ es una marca registrada de EPT, LLC.</p>
+                    <div class="flex gap-4">
+                        <a href="">terminos</a>
+                        <a href="condi">condiciones</a>
+                    </div>
+                </div>
+                <div class="idiomas flex center">
+                    <select name="" id="">
+                        <option value="">español</option>
+                        <option value="">English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div th:if=${param.error}>
+        <div class="alert alert-danger">Usuario o contraseña
+            inválidos</div>
+    </div>
+
+    <div th:if=${param.exito}>
+        <div class="alert alert-success">Se ha registrado Correctamente</div>
+    </div>
+    <script>
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const container = dropdown.querySelector('.dropdown-contain');
+            dropdown.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') e.preventDefault();
+
+                // Cerrar todos los dropdowns excepto el actual
+                dropdowns.forEach(d => {
+                    if (d !== dropdown) {
+                        d.classList.remove('dropdownUp');
+                        const c = d.querySelector('.dropdown-contain');
+                        if (c) c.classList.remove('flexing');
+                    }
+                });
+
+                // Alternar el dropdown clicado
+                dropdown.classList.toggle('dropdownUp');
+                if (container) container.classList.toggle('flexing');
+            });
+        });
+
+    </script>
+
+    <script th:src="@{/js/ingreso.js}"></script>
+    <script th:src="@{/js/alert.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,370 @@
+@import "tailwindcss";
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #fff9f9;
+    background-size: cover;
+}
+
+
+@media (max-width: 560px) {
+
+    html,
+    body {
+        height: 115vh;
+    }
+
+    .bg_login {
+        height: 115vh;
+    }
+}
+
+
+.container-100 {
+    margin: 0 auto;
+    width: 100%;
+    border-bottom: 1px solid #252525;
+    position: fixed;
+    background-color: var(--color-medium-blue);
+    top: 0;
+}
+
+nav {
+    display: flex;
+    padding: 15px 20px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 134;
+    width: 100%;
+    background-color: var(--color-medium-blue);
+    max-width: 1351px;
+    gap: 60px;
+}
+
+
+
+.container-100 nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+.nav-links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    color: var(--color-white);
+    font-weight: 400;
+    gap: 80px;
+    padding: 0 20px;
+}
+
+.nav-links li {
+    display: flex;
+}
+
+.nav-links li a {
+    z-index: 2;
+    font-weight: 800;
+}
+.logo {
+    z-index: 2;
+    object-fit: cover;
+    width: 100px;
+    margin-left: 60px;
+    height: 35px;
+}
+
+
+@media (max-width: 700px) {
+    .Formulario {
+        align-items: center;
+        padding: 50px 20px 0px 20px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}
+
+.text-mayus {
+    margin-left: 6px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    color: #aaaaaa;
+}
+
+
+
+
+.contain-info-more {
+    grid-area: info;
+    padding: 0px 10px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+
+
+
+.Formulario {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 100%;
+    max-width: 428px;
+    height: fit-content;
+    background-color: #0A0A0A;
+    border-radius: 20px;
+    border: 1px solid #252525;
+    padding: 20px 20px 5px 20px;
+}
+
+.Formulario h1 {
+    font-size: 32px;
+
+}
+
+
+
+.form-logo {
+    border: 1px solid #252525;
+    margin: 20px 0px;
+    width: 90px;
+    height: 90px;
+}
+
+.containt-input {
+    width: 100%;
+    justify-content: space-between;
+    border: 0.5px solid #3d3c3c;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 14px;
+}
+
+.roles-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+h4{
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-group{
+    margin: 15px 0px;
+    width: 100%;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: 0.5px solid #3d3c3c;
+    width: 100%;
+    font-size: 15px;
+}
+
+.form-group textarea{
+    width: 100%;
+}
+
+.form-control{
+    width: 100%;
+}
+
+.info-input {
+    width: 100%;
+    font-size: 15px;
+}
+
+:is(.info-input input, .info-input select) {
+    background-color: #0A0A0A;
+}
+
+.info-input input::placeholder {
+    color: #747171;
+    opacity: 1;
+}
+
+/* Cuando está enfocado */
+:is(select:focus, select:active, option:focus, option:active) {
+    border-color: #000000;
+    outline: none;
+}
+
+select:focus,
+select:active,
+option:focus,
+option:active {
+    outline: 2px solid #555;
+    /* Gris oscuro */
+    outline-offset: 2px;
+    border-color: #555;
+    /* Borde gris */
+    box-shadow: none;
+    /* Sin sombra */
+}
+
+
+option:first-child {
+    color: #747171;
+}
+
+select option {
+    background-color: #0A0A0A;
+}
+
+/* Cambia color cuando seleccionan algo */
+.custom-select.valid {
+    color: #fff;
+}
+
+/* Chrome, Safari, Edge */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px rgb(0, 0, 0) inset !important; /* color de fondo */
+    -webkit-text-fill-color: #ffffff !important; /* color del texto */
+    transition: background-color 5000s ease-in-out 0s; /* truco para evitar que vuelva */
+}
+
+
+.info-input input:hover {
+    background-color: initial;
+    border-color: initial;
+    box-shadow: none;
+    outline: none;
+    cursor: auto;
+    /* o default si quieres */
+}
+
+.btn {
+    width: 100%;
+    background: #eef4f7;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 13px;
+    border: none;
+    cursor: pointer;
+}
+
+.registrarse-contain {
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    padding: 7px 20px;
+    color: #ffffff;
+    gap: 7px;
+    grid-area: login;
+}
+
+.registrarse-contain p {
+    color: #747171;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: white;
+    padding: 2px 0px;
+}
+
+.login-sub-text {
+    margin-bottom: 25px;
+}
+
+
+form {
+    width: 100%;
+    overflow: hidden;
+    max-width: 794px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    gap: 1rem;
+    padding: 0px 20px 10px 20px;
+}
+
+
+
+
+
+/* Estilo del modal */
+.error-message {
+    display: none;
+    /* Inicialmente oculto */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1f1f1f;
+    color: white;
+    border-radius: 20px;
+    padding: 30px 60px;
+    gap: 40px;
+    z-index: 1000;
+    /* Asegura que el modal esté por encima de otros elementos */
+    font-size: 14px;
+}
+
+/* Se muestra cuando tiene la clase "show" */
+.error-message.show {
+    display: flex;
+    /* Muestra el modal */
+}
+
+/* Estilo del botón de cerrar */
+.close-repetido {
+    background-color: red;
+    color: white;
+    border-radius: 14px;
+    padding: 6px 14px;
+    cursor: pointer;
+    /* Cambia el cursor al pasar sobre el botón */
+    margin-top: 10px;
+    border: none;
+    /* Elimina el borde por defecto */
+}
+
+.close-repetido:hover {
+    background-color: darkred;
+    /* Cambio de color cuando el usuario pasa el ratón */
+}
+
+/*btn donde su type sea submit focus*/

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+    <link rel="icon" th:href="@{/images/icon_eta.png}" type="image/x-icon" />
+    <style>
+        body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        flex-direction: column;
+        }
+
+        *{
+        text-align: center;
+        }
+
+        h1{
+        text-align: center;
+        font-size: 100px;
+        font-weight: 100;
+        }
+
+        .error-modal{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="error-modal">
+
+        <h1>403</h1>
+        <p>No tienes permisos para acceder a esta página.</p>
+        <a th:href="@{/}">Volver al inicio</a>
+    </div>
+</body>
+</html>

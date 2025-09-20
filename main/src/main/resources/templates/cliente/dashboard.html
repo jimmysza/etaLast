@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/fonts/fonts.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+
+    <link rel="icon" th:href="@{/images/icon_eta.png}" type="image/x-icon" />
+
+    <style>
+        .dashboard-container {
+            margin: 40px auto;
+            max-width: 90vw;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 32px;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+    </header>
+    <div class="dashboard-container">
+        <h1>Dashboard de Clientes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cédula</th>
+                    <th>Dirección</th>
+                    <th>Preferencias</th>
+                    <th>Actividad solicitada</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.id}"></td>
+                    <td th:text="${cliente.cedula}"></td>
+                    <td th:text="${cliente.direccion}"></td>
+                    <td th:text="${cliente.preferencias}"></td>
+                    <!--En la linea de abajo iria la linea de codigo que hara que se vea la actividad solicitada por el cliente-->
+                    
+                    <!--  <td th:text="${cliente.actividadSolicitada != null ? cliente.actividadSolicitada.titulo : 'Sin actividad'}"></td>  -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
