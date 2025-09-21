@@ -1,11 +1,21 @@
 package main.entity;
 
-import jakarta.persistence.*;
+import java.util.Collection;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Collection;
 
 @Data
 @AllArgsConstructor
@@ -29,6 +39,17 @@ public class Usuario {
 
     @Column(length = 20)
     private String telefono;
+
+
+    /*
+     *  activo BOOLEAN DEFAULT TRUE,
+    
+     @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt = LocalDateTime.now();
+    */
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

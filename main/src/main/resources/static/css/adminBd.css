@@ -641,136 +641,6 @@ main.main-content{
     padding: 0px 10px;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 60px;
-    left: 0;
-    top: 0;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.3);
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-}
-
-
-
-.title-modals {
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 800;
-    padding-bottom: 15px;
-}
-
-.modal form,
-.modal-edits form {
-    position: absolute;
-    z-index: 300;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: block;
-    width: 100%;
-    height: 90%;
-    overflow-y: scroll;
-    margin: 40px 0px;
-    max-width: 500px;
-    background: white;
-
-    border-radius: 8px;
-}
-
-
-
-.modal-add form {
-    height: fit-content;
-    overflow: hidden;
-}
-
-.form-heading {
-    font-weight: 600;
-    padding: 20px 25px;
-}
-
-.inputs-form {
-    padding: 0.2rem 2rem 2rem 2rem;
-}
-
-.form-heading p {
-    margin-top: 2px;
-    font-size: 12px;
-    font-weight: 300;
-    color: #6b7280;
-}
-
-.btnSubmit {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.modal form label,
-.modal-edits form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #333;
-    font-size: 0.75rem;
-}
-
-
-.modal form input,
-.modal-edits form input,
-.modal-edits form textarea,
-.modal-edits form select,
-.modal form textarea,
-.modal form select {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    margin-bottom: 1.25rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-}
-
-.modal form input:focus,
-.modal-edits form input:focus {
-    outline: none;
-}
-
-
-.close-modal {
-    position: absolute;
-    top: 35px;
-    right: 18px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    color: #000000;
-    font-size: 25px;
-    font-weight: bold;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-}
-
-.modal.show {
-    display: flex;
-
-}
 
 .acciones {
     width: 50px;
@@ -1023,3 +893,207 @@ button {
 .content-actividad{
     padding: 15px 15px 35px 15px;
 }
+
+
+
+/*Modal*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    padding: 20px;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+
+
+.title-modals {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    padding-bottom: 15px;
+}
+
+.modal form,
+.modal-edits form {
+    position: absolute;
+    z-index: 300;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 100%;
+    height: 90%;
+    max-width: 800px;
+
+    overflow-y: scroll;
+    margin: 20px 0px;
+    background: white;
+
+    border-radius: 8px;
+}
+
+
+
+.modal-add form {
+    height: fit-content;
+    overflow: hidden;
+}
+
+.form-heading {
+    font-weight: 600;
+    padding: 20px 25px;
+}
+
+.inputs-form {
+    padding: 0.2rem 2rem 2rem 2rem;
+}
+
+.form-heading p {
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 300;
+    color: #6b7280;
+}
+
+.btnSubmit {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal form label,
+.modal-edits form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.75rem;
+}
+
+
+/* Evitar que los textarea se puedan redimensionar */
+.inputs-form textarea {
+    resize: none; /* Bloquea el redimensionamiento en todas las direcciones */
+}
+
+/* Hacer que todos los inputs tengan el mismo tamaño y estilo */
+.inputs-form input,
+.inputs-form textarea {
+    width: 100%; /* Ocupan todo el ancho del contenedor */
+    padding: 10px 14px; /* Padding consistente */
+    border: 1px solid #d1d5db; /* Borde estándar */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 0.875rem; /* Tamaño de fuente consistente */
+    box-sizing: border-box; /* Incluye padding y border en el width/height */
+    transition: all 0.2s ease; /* Transición suave */
+    background: #ffffff; /* Fondo blanco */
+}
+
+/* Estilo al enfocar */
+.inputs-form input:focus,
+.inputs-form textarea:focus {
+    outline: none;
+    border-color: #3b82f6; /* Color azul al enfocar */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); /* Sombra sutil */
+}
+
+
+.close-modal {
+    position: absolute;
+    top: 35px;
+    right: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    color: #000000;
+    font-size: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.modal.show {
+    display: flex;
+
+}
+
+/* --- MODIFICACIONES PARA GRID DE 2 COLUMNAS --- */
+
+.inputs-form {
+    padding: 1.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Dos columnas iguales */
+    gap: 1.5rem; /* Espacio entre campos */
+    align-items: start; /* Alinear al inicio (importante para textareas altas) */
+}
+
+/* Hacer que los campos ocupen 2 columnas cuando sea necesario */
+.inputs-form label[for="descripcion"],
+.inputs-form textarea#descripcion,
+.inputs-form label[for="incluye"],
+.inputs-form textarea#incluye,
+.inputs-form label[for="normas"],
+.inputs-form textarea#normas,
+.inputs-form label[for="lenguaje"],
+.inputs-form textarea#lenguaje,
+.inputs-form label[for="condiciones"],
+.inputs-form textarea#condiciones {
+    grid-column: span 2; /* Estos ocupan el ancho completo */
+}
+
+/* El botón de submit también ocupa 2 columnas */
+.btnSubmit {
+    grid-column: span 2;
+    justify-self: end; /* Alinear a la derecha */
+    margin-top: 0.5rem;
+}
+
+/* Asegurar que las etiquetas estén arriba de sus inputs */
+.inputs-form > label {
+    grid-column: span 2;
+}
+
+/* Excepto las etiquetas de los campos que ocupan 1 columna */
+.inputs-form > label:not([for="descripcion"]):not([for="incluye"]):not([for="normas"]):not([for="lenguaje"]):not([for="condiciones"]) {
+    grid-column: span 1;
+}
+
+/* Inputs y textareas de 1 columna */
+.inputs-form > input:not(#descripcion):not(#incluye):not(#normas):not(#lenguaje):not(#condiciones),
+.inputs-form > textarea:not(#descripcion):not(#incluye):not(#normas):not(#lenguaje):not(#condiciones) {
+    grid-column: span 1;
+}
+
+/* El input de archivo también en 2 columnas */
+.inputs-form > input[type="file"] {
+    grid-column: span 2;
+}
+
+/* Si quieres que "Ubicación" y "Capacidad" estén en la misma fila: */
+.inputs-form label[for="ubicacion"],
+.inputs-form input#ubicacion,
+.inputs-form label[for="capacidad"],
+.inputs-form input#capacidad {
+    grid-column: span 1;
+}
+

@@ -1,0 +1,207 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/images/logo.webp" />
+
+  <link rel="icon" th:href="@{/images/icon_eta.png}" type="image/x-icon" />
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" type="text/css" href="../../static/css/register.css">
+  <link rel="stylesheet" type="text/css" href="../../static/css/global.css">
+  
+
+  <link rel="stylesheet" th:href="@{/css/global.css}">
+  <link rel="stylesheet" th:href="@{/css/register.css}">
+  <link rel="stylesheet" th:href="@{/fonts/fonts.css}">
+
+  <title>Eta - Registro - Cliente - Eventos Toures Actividades</title>
+
+</head>
+
+
+<body>
+  <main>
+
+
+    <div class="value-info">
+      <div class="content">
+        <a th:href="@{/}" class="return">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="m4 10l-.707.707L2.586 10l.707-.707zm17 8a1 1 0 1 1-2 0zM8.293 15.707l-5-5l1.414-1.414l5 5zm-5-6.414l5-5l1.414 1.414l-5 5zM4 9h10v2H4zm17 7v2h-2v-2zm-7-7a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5z" />
+          </svg>
+          <span>Anterior pagina</span>
+        </a>
+        <div class="img-pet"></div>
+      </div>
+
+    </div>
+
+    <div class="login-root">
+
+      <a th:href="@{/}" class="return rt-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="m4 10l-.707.707L2.586 10l.707-.707zm17 8a1 1 0 1 1-2 0zM8.293 15.707l-5-5l1.414-1.414l5 5zm-5-6.414l5-5l1.414 1.414l-5 5zM4 9h10v2H4zm17 7v2h-2v-2zm-7-7a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5z" />
+        </svg>
+        <span>Anterior pagina</span>
+      </a>
+
+      <h1 class="p-bold">Registrate con tu email</h1>
+      <p class="text-sma">Bienvenido, ingresa tu Clientes</p>
+
+
+      <div th:if="${param.exito}" class="alert alert-success" id="mensajeExito">
+        <span th:text="${exito}"></span>
+    </div>
+
+      <form th:action="@{/registro/cliente}" th:object="${cliente}" method="post">
+
+        <!--nombre-->
+        <div class="input div1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26">
+            <path fill="#BFC2CF"
+              d="M16.563 15.9c-.159-.052-1.164-.505-.536-2.414h-.009c1.637-1.686 2.888-4.399 2.888-7.07c0-4.107-2.731-6.26-5.905-6.26c-3.176 0-5.892 2.152-5.892 6.26c0 2.682 1.244 5.406 2.891 7.088c.642 1.684-.506 2.309-.746 2.397c-3.324 1.202-7.224 3.393-7.224 5.556v.811c0 2.947 5.714 3.617 11.002 3.617c5.296 0 10.938-.67 10.938-3.617v-.811c0-2.228-3.919-4.402-7.407-5.557"
+              stroke-width="0.5" stroke="#BFC2CF" />
+          </svg>
+          <input type="text" placeholder="nombre" id="nombre" th:field="*{usuario.nombre}" required>
+        </div>
+        <!--Cedula-->
+        <div class="input div2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 26 26">
+            <path fill="#BFC2CF"
+              d="M16.563 15.9c-.159-.052-1.164-.505-.536-2.414h-.009c1.637-1.686 2.888-4.399 2.888-7.07c0-4.107-2.731-6.26-5.905-6.26c-3.176 0-5.892 2.152-5.892 6.26c0 2.682 1.244 5.406 2.891 7.088c.642 1.684-.506 2.309-.746 2.397c-3.324 1.202-7.224 3.393-7.224 5.556v.811c0 2.947 5.714 3.617 11.002 3.617c5.296 0 10.938-.67 10.938-3.617v-.811c0-2.228-3.919-4.402-7.407-5.557"
+              stroke-width="0.5" stroke="#BFC2CF" />
+          </svg>
+          <input type="number" id="cedula" name="cedula" th:value="${cliente.cedula}" placeholder="cedula" required
+            min="0">
+        </div>
+
+        <!--email-->
+        <div class="div3 input  ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#BFC2CF"
+              d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z" />
+          </svg>
+          <input type="email" id="email" th:field="*{usuario.email}" placeholder="email" required>
+        </div>
+
+        <!--telefono-->
+        <div class="input div4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#BFC2CF"
+              d="m19.23 15.26l-2.54-.29a1.99 1.99 0 0 0-1.64.57l-1.84 1.84a15.05 15.05 0 0 1-6.59-6.59l1.85-1.85c.43-.43.64-1.03.57-1.64l-.29-2.52a2 2 0 0 0-1.99-1.77H5.03c-1.13 0-2.07.94-2 2.07c.53 8.54 7.36 15.36 15.89 15.89c1.13.07 2.07-.87 2.07-2v-1.73c.01-1.01-.75-1.86-1.76-1.98"
+              stroke-width="0.5" stroke="#BFC2CF" />
+          </svg>
+          <input placeholder="Telefono" type="number" th:field="*{usuario.telefono}" required min="0">
+        </div>
+
+        <!--Direccion-->
+        <div class="input div5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#BFC2CF"
+              d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7"
+              stroke-width="0.5" stroke="#BFC2CF" />
+          </svg>
+          <input type="text" id="direccion" name="direccion" th:value="${cliente.direccion}" placeholder="Direccion"
+            required>
+        </div>
+
+        <!--Imagen-->
+        <!-- <div class=" div6 input-img">
+          <label for="file" class="file-upload-label">
+            <div class="file-upload-design">
+              <svg viewBox="0 0 640 512" height="1em">
+                <path
+                  d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z">
+                </path>
+              </svg>
+              <div class="flex">
+
+
+                <p class="bold">Arrastra y suelta</p>
+                <p>o</p>
+                <span class="browse-button">Buscar archivo</span>
+              </div>
+            </div>
+            <input id="file" type="file" />
+          </label>
+        </div> -->
+        
+
+        <div class="input div6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#BFC2CF"
+              d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7"
+              stroke-width="0.5" stroke="#BFC2CF" />
+          </svg>
+          <textarea id="preferencias" placeholder="preferencias" name="preferencias" th:text="${cliente.preferencias}"required></textarea>
+          
+        </div>
+
+
+        <!--password-->
+        <div class="input div7">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#BFC2Cf"
+              d="M20 12c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9z" />
+          </svg>
+          <input type="password" th:field="*{usuario.password}" placeholder="Contraseña" required>
+        </div>
+
+        <!--forgot-->
+        <div class="forgot-password div8">
+          <a href="#">Olvidaste la Contraseña?</a>
+        </div>
+
+        <!--9 submit-->
+        <button type="submit" class="login-button div9">Unete</button>
+        <!--10 -->
+        <p class="register div10">¿ya tienes una cuenta? <a th:href="@{/login?role=cliente}">inicia sesion</a></p>
+        <!-- <div class="flex items-center mt-2 mb-4">
+          <div class="flex-grow border-t border-gray-300"></div>
+          <span class="divide px-3 text-gray-500 text-sm">Or continue with</span>
+          <div class="flex-grow border-t border-gray-300"></div>
+        </div> -->
+
+        <!-- <div class="social-login">
+          <button class="log-Auth"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+              <path fill="#fff"
+                d="M128.003 199.216c39.335 0 71.221-31.888 71.221-71.223S167.338 56.77 128.003 56.77S56.78 88.658 56.78 127.993s31.887 71.223 71.222 71.223"
+                stroke-width="6.5" stroke="#fff" />
+              <path fill="#229342"
+                d="M35.89 92.997Q27.92 79.192 17.154 64.02a127.98 127.98 0 0 0 110.857 191.981q17.671-24.785 23.996-35.74q12.148-21.042 31.423-60.251v-.015a63.993 63.993 0 0 1-110.857.017Q46.395 111.19 35.89 92.998"
+                stroke-width="6.5" stroke="#229342" />
+              <path fill="#fbc116"
+                d="M128.008 255.996A127.97 127.97 0 0 0 256 127.997A128 128 0 0 0 238.837 64q-36.372-3.585-53.686-3.585q-19.632 0-57.152 3.585l-.014.01a63.99 63.99 0 0 1 55.444 31.987a63.99 63.99 0 0 1-.001 64.01z"
+                stroke-width="6.5" stroke="#fbc116" />
+              <path fill="#1a73e8"
+                d="M128.003 178.677c27.984 0 50.669-22.685 50.669-50.67s-22.685-50.67-50.67-50.67c-27.983 0-50.669 22.686-50.669 50.67s22.686 50.67 50.67 50.67"
+                stroke-width="6.5" stroke="#1a73e8" />
+              <path fill="#e33b2e"
+                d="M128.003 64.004H238.84a127.973 127.973 0 0 0-221.685.015l55.419 95.99l.015.008a63.993 63.993 0 0 1 55.415-96.014z"
+                stroke-width="6.5" stroke="#e33b2e" />
+            </svg></button>
+          <button class="log-Auth"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+              <path fill="#1877f2"
+                d="M256 128C256 57.308 198.692 0 128 0S0 57.308 0 128c0 63.888 46.808 116.843 108 126.445V165H75.5v-37H108V99.8c0-32.08 19.11-49.8 48.348-49.8C170.352 50 185 52.5 185 52.5V84h-16.14C152.959 84 148 93.867 148 103.99V128h35.5l-5.675 37H148v89.445c61.192-9.602 108-62.556 108-126.445"
+                stroke-width="6.5" stroke="#1877f2" />
+              <path fill="#fff"
+                d="m177.825 165l5.675-37H148v-24.01C148 93.866 152.959 84 168.86 84H185V52.5S170.352 50 156.347 50C127.11 50 108 67.72 108 99.8V128H75.5v37H108v89.445A129 129 0 0 0 128 256a129 129 0 0 0 20-1.555V165z"
+                stroke-width="6.5" stroke="#fff" />
+            </svg></button>
+          <button class="log-Auth"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 128 128">
+              <path
+                d="M97.905 67.885c.174 18.8 16.494 25.057 16.674 25.137c-.138.44-2.607 8.916-8.597 17.669c-5.178 7.568-10.553 15.108-19.018 15.266c-8.318.152-10.993-4.934-20.504-4.934c-9.508 0-12.479 4.776-20.354 5.086c-8.172.31-14.395-8.185-19.616-15.724C15.822 94.961 7.669 66.8 18.616 47.791c5.438-9.44 15.158-15.417 25.707-15.571c8.024-.153 15.598 5.398 20.503 5.398c4.902 0 14.106-6.676 23.782-5.696c4.051.169 15.421 1.636 22.722 12.324c-.587.365-13.566 7.921-13.425 23.639M82.272 21.719c4.338-5.251 7.258-12.563 6.462-19.836c-6.254.251-13.816 4.167-18.301 9.416c-4.02 4.647-7.54 12.087-6.591 19.216c6.971.54 14.091-3.542 18.43-8.796" />
+            </svg></button>
+        </div> -->
+      </form>
+    </div>
+  </main>
+</body>
+
+</html>

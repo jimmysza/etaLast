@@ -36,16 +36,27 @@ public class Actividad {
     @Lob
     private String descripcion;
 
-
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
 
     private String ubicacion;
 
-    @Lob private String incluye;
-    @Lob private String normas;
-    @Lob private String lenguaje;
-    @Lob private String condiciones;
+
+    @Lob
+    private String normas;
+
+    /*borrables*/
+    @Lob
+    private String incluye;
+    
+    @Lob
+    private String lenguaje;
+
+
+
+
+    @Lob
+    private String condiciones;
 
     private LocalDateTime fechaActividad;
     private String imagen;
@@ -63,10 +74,14 @@ public class Actividad {
 
     // Nueva relación con Categoria (N:M)
     @ManyToMany
-    @JoinTable(
-        name = "actividad_categoria",
-        joinColumns = @JoinColumn(name = "id_actividad"),
-        inverseJoinColumns = @JoinColumn(name = "id_categoria")
-    )
+    @JoinTable(name = "actividad_categoria", joinColumns = @JoinColumn(name = "id_actividad"), inverseJoinColumns = @JoinColumn(name = "id_categoria"))
     private Set<Categoria> categorias = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "actividad_beneficio", joinColumns = @JoinColumn(name = "id_actividad"), inverseJoinColumns = @JoinColumn(name = "id_beneficio"))
+    private Set<Beneficio> beneficios = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "actividad_idioma", joinColumns = @JoinColumn(name = "id_actividad"), inverseJoinColumns = @JoinColumn(name = "id_idioma"))
+    private Set<Idioma> idiomas = new HashSet<>();
 }

@@ -1,6 +1,8 @@
 package main.controller;
 
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -13,9 +15,6 @@ import main.entity.Actividad;
 import main.entity.Usuario;
 import main.service.ActividadService;
 import main.service.UsuarioService;
-
-import java.util.List;
-import java.util.stream.IntStream;
 
 
 @Controller
@@ -53,7 +52,7 @@ public class AllAcessController {
             model.addAttribute("nombreUsuario", null);
         }
 
-        int pageSize = 4;
+        int pageSize = 6;
 
         Page<Actividad> actividadesPage = actividadService.getActividadesWithPaginationMain(page, pageSize, nombre);
 

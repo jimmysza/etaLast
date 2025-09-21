@@ -30,11 +30,13 @@ public class Reserva {
     private LocalDateTime fechaReserva = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 15)
+    @Column(length = 15, nullable = false)
     private EstadoReserva estado = EstadoReserva.PENDIENTE;
+
 
     private Boolean cupoLimite = false;
 
+    
     // Enum interno
     public enum EstadoReserva {
         PENDIENTE, CONFIRMADA, CANCELADA

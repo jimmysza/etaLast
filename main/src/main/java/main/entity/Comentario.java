@@ -28,6 +28,7 @@ public class Comentario {
     @Lob
     private String texto;
 
+    @Column(nullable = false)
     private Integer calificacion;
 
     private LocalDateTime fechaComentario = LocalDateTime.now();

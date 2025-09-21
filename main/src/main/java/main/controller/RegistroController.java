@@ -1,19 +1,20 @@
 package main.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import main.entity.Cliente;
 import main.entity.Colaborador;
 import main.entity.Usuario;
 import main.service.ClienteService;
 import main.service.ColaboradorService;
 import main.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/registro")
@@ -37,7 +38,7 @@ public class RegistroController {
         cliente.setUsuario(new Usuario());
         model.addAttribute("cliente", cliente);
         model.addAttribute("role", "Cliente");
-        return "Auth/registro_cliente";
+        return "Auth/registroCliente";
     }
 
 
@@ -56,7 +57,7 @@ public class RegistroController {
         colaborador.setUsuario(new Usuario());
         model.addAttribute("colaborador", colaborador);
         model.addAttribute("role", "Colaborador");
-        return "Auth/registro_colaborador";
+        return "Auth/registroColaborador";
     }
 
 

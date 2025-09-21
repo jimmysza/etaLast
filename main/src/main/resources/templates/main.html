@@ -31,10 +31,10 @@
                 </div>
                 <div class="menu" id="menu">
                     <ul class="menu-inner">
-                        <li class="menu-item"><a href="#" class="menu-link">Tendencias</a></li>
-                        <li class="menu-item"><a href="#" class="menu-link">Comparte</a></li>
-                        <li class="menu-item"><a href="#" class="menu-link">Actividades</a></li>
-                        <li class="menu-item"><a href="#" class="menu-link">Colaboradores</a></li>
+                        <li class="menu-item"><a href="#actividades" class="menu-link">Tendencias</a></li>
+                        <li class="menu-item"><a href="#compartir" class="menu-link">Comparte</a></li>
+                        <li class="menu-item"><a href="#actividades" class="menu-link">Actividades</a></li>
+                        <li class="menu-item"><a href="#footer" class="menu-link">Colaboradores</a></li>
                         <li class="sign-contain" th:if="${nombreUsuario == null}">
                             <a th:href="@{/login?role=cliente}" class="btn-auth login-auth">Inicia sesión</a>
                             <a th:href="@{/registro/cliente}" class="btn-auth register-btn">
@@ -109,18 +109,18 @@
                         </g>
                     </svg>
                 </a>
-                <a href="" class="btn-auth">Explora Actividades</a>
+                <a href="#actividades" class="btn-auth">Explora Actividades</a>
             </div>
         </div>
 
     </main>
 
-    <section class="Trending" id="tendencias">
+    <section class="Trending" id="actividades">
         <div class="top-trending">
             <h2 class="h2_trendi">Tendencias, <a href="#" class="city">Cartagena de Indias</a></h2>
         </div>
 
-        <div class="Actividades-Container">
+        <div class="Actividades-Container" >
             <a th:each="actividad : ${actividades.content}"
                 th:href="@{/cliente/detalle/{id}(id=${actividad.idActividad})}" class="Actividad-card-link">
                 <div class="Actividad-card">
@@ -171,7 +171,7 @@
 
     </section>
 
-    <section class="social" id="comparte">
+    <section class="social" id="compartir">
         <div class="flex">
             <div class="w-70 social-container-info">
                 <h2>Comparte, Tu Plan</h2>
@@ -239,7 +239,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer id="footer">
         <div class="info-footer flex flex-col">
 
             <div class="links-container-footer">
