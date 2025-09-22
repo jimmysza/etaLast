@@ -17,6 +17,7 @@ import main.entity.Actividad;
 import main.entity.Usuario;
 import main.service.ActividadService;
 import main.service.UsuarioService;
+
 @Controller
 public class AllAcessController {
 
@@ -35,53 +36,52 @@ public class AllAcessController {
         return "auth/login"; // vista login.html}
     }
 
-
     @GetMapping("/")
-public String landingPage(Model model, Authentication auth,
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(required = false) String nombre) {
+    public String landingPage(Model model, Authentication auth,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(required = false) String nombre) {
 
-    if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
+        if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
 
-        String email = auth.getName();
-        Usuario usuario = usuarioService.findByEmail(email).orElse(null);
+            String email = auth.getName();
+            Usuario usuario = usuarioService.findByEmail(email).orElse(null);
 
-        if (usuario != null) {
-            model.addAttribute("nombreUsuario", usuario.getNombre());
+            if (usuario != null) {
+                model.addAttribute("nombreUsuario", usuario.getNombre());
+            } else {
+                model.addAttribute("nombreUsuario", email);
+            }
+
+            // ✅ Obtener el rol del usuario
+            Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+            String role = authorities.stream()
+                    .map(GrantedAuthority::getAuthority) // "ROLE_CLIENTE", "ROLE_ADMIN", etc.
+                    .findFirst()
+                    .orElse("ROLE_ANONYMOUS"); // fallback
+
+            model.addAttribute("userRole", role); // <-- ¡Listo! Lo puedes usar en Thymeleaf con ${userRole}
+
         } else {
-            model.addAttribute("nombreUsuario", email);
+            model.addAttribute("nombreUsuario", null);
+            model.addAttribute("userRole", "ROLE_ANONYMOUS");
         }
 
-        // ✅ Obtener el rol del usuario
-        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
-        String role = authorities.stream()
-                .map(GrantedAuthority::getAuthority) // "ROLE_CLIENTE", "ROLE_ADMIN", etc.
-                .findFirst()
-                .orElse("ROLE_ANONYMOUS"); // fallback
+        // ... el resto de tu código (paginación, etc.)
+        int pageSize = 6;
+        Page<Actividad> actividadesPage = actividadService.getActividadesWithPaginationMain(page, pageSize, nombre);
+        model.addAttribute("actividades", actividadesPage);
+        model.addAttribute("actividad", new Actividad());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", actividadesPage.getTotalPages());
+        model.addAttribute("filtroNombre", nombre);
 
-        model.addAttribute("userRole", role); // <-- ¡Listo! Lo puedes usar en Thymeleaf con ${userRole}
+        List<Integer> pageNumbers = IntStream.range(0, actividadesPage.getTotalPages())
+                .boxed()
+                .collect(Collectors.toList());
+        model.addAttribute("pageNumbers", pageNumbers);
 
-    } else {
-        model.addAttribute("nombreUsuario", null);
-        model.addAttribute("userRole", "ROLE_ANONYMOUS");
+        return "main";
     }
-
-    // ... el resto de tu código (paginación, etc.)
-    int pageSize = 6;
-    Page<Actividad> actividadesPage = actividadService.getActividadesWithPaginationMain(page, pageSize, nombre);
-    model.addAttribute("actividades", actividadesPage);
-    model.addAttribute("actividad", new Actividad());
-    model.addAttribute("currentPage", page);
-    model.addAttribute("totalPages", actividadesPage.getTotalPages());
-    model.addAttribute("filtroNombre", nombre);
-
-    List<Integer> pageNumbers = IntStream.range(0, actividadesPage.getTotalPages())
-            .boxed()
-            .collect(Collectors.toList());
-    model.addAttribute("pageNumbers", pageNumbers);
-
-    return "main";
-}
 
     // Página de inicio
     @GetMapping("/index")

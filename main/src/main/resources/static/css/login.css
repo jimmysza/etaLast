@@ -1,14 +1,16 @@
 body {
     position: relative;
-    background-color: #616161;
+    background: #1ab6d9;
+    background: linear-gradient(39deg, rgba(26, 182, 217, 1) 0%, rgba(56, 149, 199, 1) 44%, rgba(79, 158, 207, 1) 59%, rgba(141, 181, 227, 1) 100%);
     min-height: 100vh;
     overflow: hidden;
 }
 
 
-main{   
+main {
     position: relative;
-    background-color: #4c4b4b;
+    background: #1ab6d9;
+    background: linear-gradient(39deg, rgba(26, 182, 217, 1) 0%, rgba(56, 149, 199, 1) 44%, rgba(79, 158, 207, 1) 59%, rgba(141, 181, 227, 1) 100%);
     min-height: 100vh;
     overflow: hidden;
 }
@@ -18,9 +20,7 @@ main{
 .container-100 {
     margin: 0 auto;
     width: 100%;
-    border-bottom: 1px solid #252525;
     position: fixed;
-    background-color: var(--color-medium-blue);
     top: 0;
     z-index: 1010;
 }
@@ -33,7 +33,6 @@ nav {
     transform: translateX(-50%);
     z-index: 134;
     width: 100%;
-    background-color: var(--color-medium-blue);
     max-width: 1351px;
     gap: 60px;
 }
@@ -68,6 +67,7 @@ nav {
     z-index: 2;
     font-weight: 800;
 }
+
 .logo {
     z-index: 2;
     object-fit: cover;
@@ -95,7 +95,7 @@ nav {
 
 h1 {
     margin: 20px 0px;
-    
+
 }
 
 h1 a {
@@ -163,7 +163,7 @@ h1 a {
     border-radius: 12px;
     width: 400px;
     gap: 15px;
-    align-items: center; 
+    align-items: center;
 }
 
 
@@ -172,12 +172,12 @@ h1 a {
     outline: none;
     background: transparent;
     width: 400px;
-    flex: 1; 
+    flex: 1;
     font-size: 14px;
     color: #3e3e3e;
     text-align: left;
     width: 100%;
-    
+
 }
 
 .input input:focus {
@@ -185,7 +185,8 @@ h1 a {
     outline: none;
     background: transparent;
     width: 400px;
-    flex: 1; /* Hace que el input use todo el espacio disponible */
+    flex: 1;
+    /* Hace que el input use todo el espacio disponible */
     color: #474748;
     text-align: left;
     width: 100%;
@@ -195,7 +196,7 @@ h1 a {
     color: #8d8f91;
 }
 
-.input input:hover{
+.input input:hover {
     text-align: left;
 }
 
@@ -224,7 +225,7 @@ input {
 
 .return:hover {
     border: 1px solid #9b9b9ba6;
-    
+
     border-radius: 8px;
 }
 
@@ -279,7 +280,7 @@ input {
     height: 20px;
 }
 
-.divider-c{
+.divider-c {
     position: relative;
     display: flex;
     justify-content: center;
@@ -294,19 +295,19 @@ input {
     z-index: 4;
 }
 
-.log-Auth{
+.log-Auth {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 
-.register{
+.register {
     font-size: 14px;
     color: #666;
 }
 
-.register a{
+.register a {
     color: var(--color-medium-blue);
     text-decoration: none;
     font-weight: 600;
@@ -314,19 +315,19 @@ input {
 
 @media screen and (max-width: 580px) {
 
-    .alinear{
+    .alinear {
         z-index: 1;
     }
 
-    .image-bg{ 
+    .image-bg {
         display: none;
     }
 
-    .return{
+    .return {
         z-index: 10;
     }
 
-    .login-root{
+    .login-root {
         max-width: 100%;
         z-index: 1;
         padding-top: 100px;

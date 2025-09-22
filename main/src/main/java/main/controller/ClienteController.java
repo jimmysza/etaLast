@@ -36,6 +36,8 @@ public class ClienteController {
             return "redirect:/cliente/dashboard"; // Redirige al dashboard si la actividad no existe
         }
 
+        
+
         model.addAttribute("actividad", actividad);
 
          return "cliente/detalle-actividad"; // templates/cliente/detalle-actividad.html
