@@ -124,6 +124,20 @@ public class ColaboradorController {
     }
 
 
+    @GetMapping("/detalle/{id}")
+    public String verDetalleAcividad(@PathVariable("id") Long id, Model model) {
+
+        Actividad actividad = actividadService.listarById(id);
+
+        
+        if (actividad == null) {
+            return "redirect:/colaborador/dashboard"; // Redirige al dashboard si la actividad no existe
+        }
+
+        model.addAttribute("actividad", actividad);
+
+         return "colaborador/detalle-actividad"; // templates/cliente/detalle-actividad.html
+    }
 
 
 }

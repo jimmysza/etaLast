@@ -229,7 +229,7 @@
             </div>
             <div class="Actividades-Container">
                 <a th:each="actividad : ${actividades}"
-                    th:href="@{/detalle/actividad/{id}(id=${actividad.idActividad})}" class="Actividad-card-link">
+                    th:href="@{/colaborador/detalle/{id}(id=${actividad.idActividad})}" class="Actividad-card-link">
                     <div class="Actividad-card">
                         <div class="price">$ <span th:text="${#numbers.formatDecimal(actividad.precio, 0, 0)}">10</span>
                         </div>

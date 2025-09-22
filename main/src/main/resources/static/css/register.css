@@ -147,7 +147,7 @@ main {
     flex: 1;
     height: 100%;
     font-size: 14px;
-    color: #BFC2C6;
+    color: #474748;
     text-align: left;
 }
 
@@ -163,7 +163,7 @@ main {
     background: transparent;
     flex: 1;
     /* Hace que el input use todo el espacio disponible */
-    color: #BFC2C6;
+    color: #474748;
     text-align: left;
     width: 10%;
     min-width: 50%;
@@ -179,6 +179,11 @@ main {
 .input textarea:hover,
 .input input:hover{
     text-align: left;
+}
+
+.input textarea {
+    resize: none; 
+    max-height: 24px; /* Bloquea el redimensionamiento en todas las direcciones */
 }
 
 

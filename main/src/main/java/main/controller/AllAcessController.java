@@ -1,11 +1,13 @@
 package main.controller;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +17,6 @@ import main.entity.Actividad;
 import main.entity.Usuario;
 import main.service.ActividadService;
 import main.service.UsuarioService;
-
-
 @Controller
 public class AllAcessController {
 
@@ -35,41 +35,53 @@ public class AllAcessController {
         return "auth/login"; // vista login.html}
     }
 
-    @GetMapping("/")
-    public String landingPage(Model model, Authentication auth,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(required = false) String nombre) {
-        if (auth != null && auth.isAuthenticated()) {
-            String email = auth.getName(); // el email del login
-            Usuario usuario = usuarioService.findByEmail(email).orElse(null);
 
-            if (usuario != null) {
-                model.addAttribute("nombreUsuario", usuario.getNombre());
-            } else {
-                model.addAttribute("nombreUsuario", email); // fallback
-            }
+    @GetMapping("/")
+public String landingPage(Model model, Authentication auth,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(required = false) String nombre) {
+
+    if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
+
+        String email = auth.getName();
+        Usuario usuario = usuarioService.findByEmail(email).orElse(null);
+
+        if (usuario != null) {
+            model.addAttribute("nombreUsuario", usuario.getNombre());
         } else {
-            model.addAttribute("nombreUsuario", null);
+            model.addAttribute("nombreUsuario", email);
         }
 
-        int pageSize = 6;
+        // ✅ Obtener el rol del usuario
+        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+        String role = authorities.stream()
+                .map(GrantedAuthority::getAuthority) // "ROLE_CLIENTE", "ROLE_ADMIN", etc.
+                .findFirst()
+                .orElse("ROLE_ANONYMOUS"); // fallback
 
-        Page<Actividad> actividadesPage = actividadService.getActividadesWithPaginationMain(page, pageSize, nombre);
+        model.addAttribute("userRole", role); // <-- ¡Listo! Lo puedes usar en Thymeleaf con ${userRole}
 
-        model.addAttribute("actividades", actividadesPage);
-        model.addAttribute("actividad", new Actividad());
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", actividadesPage.getTotalPages());
-        model.addAttribute("filtroNombre", nombre);
-
-        // ✅ Generamos la lista de números de páginas
-        List<Integer> pageNumbers = IntStream.range(0, actividadesPage.getTotalPages())
-                .boxed()
-                .collect(Collectors.toList());
-        model.addAttribute("pageNumbers", pageNumbers);
-
-        return "main"; // tu vista
+    } else {
+        model.addAttribute("nombreUsuario", null);
+        model.addAttribute("userRole", "ROLE_ANONYMOUS");
     }
+
+    // ... el resto de tu código (paginación, etc.)
+    int pageSize = 6;
+    Page<Actividad> actividadesPage = actividadService.getActividadesWithPaginationMain(page, pageSize, nombre);
+    model.addAttribute("actividades", actividadesPage);
+    model.addAttribute("actividad", new Actividad());
+    model.addAttribute("currentPage", page);
+    model.addAttribute("totalPages", actividadesPage.getTotalPages());
+    model.addAttribute("filtroNombre", nombre);
+
+    List<Integer> pageNumbers = IntStream.range(0, actividadesPage.getTotalPages())
+            .boxed()
+            .collect(Collectors.toList());
+    model.addAttribute("pageNumbers", pageNumbers);
+
+    return "main";
+}
 
     // Página de inicio
     @GetMapping("/index")

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle Actividad</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Opcional: añade estilos si los tienes -->
+    <!-- <link rel="stylesheet" th:href="@{/css/styles.css}"> -->
+</head>
+<body>
+
+<h1 th:text="${actividad.titulo}">Título de la Actividad</h1>
+
+
+<div>
+    <label for="titulo"><strong>Titulo:</strong></label><br>
+    <input type="text" id="titulo" th:value="${actividad.titulo}" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<div>
+    <label for="descripcion"><strong>Descripción:</strong></label><br>
+    <input type="text" id="descripcion" th:value="${actividad.descripcion}" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<div>
+    <label for="fechaActividad">Fecha de la actividad:</label><br>
+    <input type="text" id="fechaActividad" th:value="${#temporals.format(actividad.fechaActividad, 'dd/MM/yyyy HH:mm')}" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<div>
+    <label for="capacidad"><strong>Capacidad:</strong></label><br>
+    <input type="number" id="capacidad" th:value="${actividad.capacidad}" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<div>
+    <label for="colaboradorNombre">Colaborador:</label><br>
+    <input type="text" id="colaboradorNombre" th:value="${actividad.colaborador.usuario.nombre}" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<div>
+    <label for="imagen">Imagen:</label><br>
+    <img th:src="@{|/uploads/${actividad.imagen}|}" alt="Imagen de la actividad" style="max-width: 200px; height: auto; display: block; margin-bottom: 16px;" />
+</div>
+
+<div>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" th:value="${actividad.colaborador.usuario.email}" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<div>
+    <label for="telefono">Teléfono:</label><br>
+    <input type="tel" id="telefono" th:value="${actividad.colaborador.usuario.telefono}" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<div>
+    <label for="precio">Precio:</label><br>
+    <input type="number" id="precio" th:value="${actividad.precio}" step="0.01" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<div>
+    <label for="ubicacion"><strong>Lugar:</strong></label><br>
+    <input type="text" id="ubicacion" th:value="${actividad.ubicacion}" readonly style="width: 100%; padding: 8px; margin-bottom: 16px; box-sizing: border-box;" />
+</div>
+
+<a th:href="@{/colaborador/actividades}" class="btn btn-secondary" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">Volver</a>
+
+
+</body>
+</html>
