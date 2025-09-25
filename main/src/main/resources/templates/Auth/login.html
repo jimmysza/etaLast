@@ -29,16 +29,15 @@
 
 <body>
 
-
-    <div th:if=${param.logout}>
-        <div class="alert alert-info">Ha cerrado sesión exitosamente</div>
+    <div th:if="${param.registrarse}">
+        <div class="alert alert-info">Debes registrarte para acceder</div>
     </div>
 
-    <div th:if=${param.error}>
-        <div class="alert alert-danger">Usuario o contraseña
-            inválidos</div>
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">Usuario o contraseña inválidos</div>
     </div>
-    <div th:if=${param.exito}>
+
+    <div th:if="${param.exito}">
         <div class="alert alert-success">Se ha registrado Correctamente</div>
     </div>
 
@@ -50,6 +49,7 @@
             </a>
             <ul class="nav-links">
 
+                <li th:if="${role == null}"><a th:href="@{/registro/cliente}">Registrarse</a></li>
                 <li th:if="${role == 'cliente'}"><a th:href="@{/registro/cliente}">Registrarse</a></li>
                 <li th:if="${role == 'colaborador'}"><a th:href="@{/registro/colaborador}">Registrarse</a></li>
             </ul>
@@ -93,6 +93,7 @@
             <p class="register">¿no tienes una cuenta?
                 <a th:if="${role == 'cliente'}" th:href="@{/registro/cliente}">registrarse</a>
                 <a th:if="${role == 'colaborador'}" th:href="@{/registro/colaborador}">registrarse</a>
+                <a th:if="${role == null}" th:href="@{/registro/cliente}">registrarse</a>
             </p>
             <!-- <div class="flex items-center mt-2 mb-4">
           <div class="flex-grow border-t border-gray-300"></div>
@@ -136,6 +137,6 @@
 
     <script th:src="@{/js/ingreso.js}"></script>
     <script th:src="@{/js/alert.js}"></script>
-</body>
+</body>r
 
 </html>

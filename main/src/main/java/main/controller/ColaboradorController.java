@@ -1,5 +1,7 @@
 package main.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,8 @@ import main.service.ActividadService;
 import main.service.ColaboradorService;
 import main.service.IUploadFileService;
 import main.service.UsuarioService;
+import java.time.LocalDateTime;
+
 
 @Controller
 @RequestMapping("/colaborador")
@@ -61,7 +65,13 @@ public class ColaboradorController {
         Colaborador colaborador = colaboradorService.obtenerPorUsuario(usuario)
                 .orElseThrow(() -> new RuntimeException("Colaborador no encontrado para el usuario: " + usuario.getEmail()));
 
+        /*Se pone el colaborador  */
         actividad.setColaborador(colaborador);
+
+        /*Se pone la fecha actual */
+        actividad.setCreatedAt(LocalDateTime.now());
+
+
 
         try {
             if (!imagenFile.isEmpty()) {

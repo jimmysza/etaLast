@@ -47,7 +47,8 @@ public class RegistroController {
                                 RedirectAttributes redirectAttributes) {
         clienteService.registrarCliente(cliente);
         redirectAttributes.addFlashAttribute("exito", "Cliente registrado con éxito.");
-        return "redirect:/login?role=colaborador";
+        return "redirect:/login?role=cliente&exito";
+
     }
 
 
@@ -65,9 +66,8 @@ public class RegistroController {
     public String registrarColaborador(@ModelAttribute("colaborador") Colaborador colaborador,
                                 RedirectAttributes redirectAttributes) {
         colaboradorService.registrarColaborador(colaborador);
-        redirectAttributes.addFlashAttribute("exito", "Cliente registrado con éxito.");
-        redirectAttributes.addFlashAttribute("exito", "Cliente registrado con éxito.");
-        return "redirect:/login?role=colaborador";
+        redirectAttributes.addFlashAttribute("exito", "Colaborador registrado con éxito.");
+        return "redirect:/login?role=colaborador&exito";
     }
 
 
